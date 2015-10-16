@@ -1,0 +1,71 @@
+extends layout
+
+block content
+    h4= title
+   
+    // Wrapper
+    #wrapper
+
+        // USER INFO
+        #userInfo
+            h4 Detalhes
+            p 
+                strong Nome:
+                |  <span id='userInfoName'></span>
+                br
+                strong Idade:
+                |  <span id='userInfoAge'></span>
+                br
+                strong Sexo:
+                |  <span id='userInfoGender'></span>
+                br
+                strong Localidade:
+                |  <span id='userInfoLocation'></span>
+        // /USER INFO
+
+        // USER LIST
+        h4 Lista de usuários 
+        #userList
+            table
+                thead
+                    th Nome
+                    th E-mail
+                    th Deletar
+                tbody
+        // /USER LIST
+
+        // ADD USER
+        #addUserPanel
+            h4 Adicionar usuários
+            #addUser
+                fieldset
+                    input#inputUserName(type='text', placeholder='Nome de usuário')
+                    input#inputUserEmail(type='text', placeholder='E-mail')
+                    br
+                    input#inputUserFullname(type='text', placeholder='Nome completo')
+                    input#inputUserAge(type='text', placeholder='Idade')
+                    br
+                    input#inputUserLocation(type='text', placeholder='Localidade')
+                    input#inputUserGender(type='text', placeholder='Sexo')
+                    br
+                    button#btnAddUser Adicionar
+        // /ADD USER
+        // UPDATE USER
+        #updateUserPanel
+            h4 Editar usuários
+            #updateUser
+                fieldset
+                    input#updateUserName(type='text', placeholder='Nome de usuário')
+                    input#updateUserEmail(type='text', placeholder='E-mail')
+                    br
+                    input#updateUserFullname(type='text', placeholder='Nome completo')
+                    input#updateUserAge(type='text', placeholder='Idade')
+                    br
+                    input#updateUserLocation(type='text', placeholder='Localidade')
+                    input#updateUserGender(type='text', placeholder='Sexo')
+                    br
+                    // /button#btnUpdateUser Editar usuário
+                    button#btnCancelUpdateUser Cancelar
+        // /UPDATE USER
+
+    // /WRAPPER
