@@ -55,16 +55,16 @@ block content
             h4 Editar usuários
             #updateUser
                 fieldset
-                    input#updateUserName(type='text', placeholder='Nome de usuário')
-                    input#updateUserEmail(type='text', placeholder='E-mail')
+                    input#updateUserName(type='text', placeholder='Nome de usuário', field="username")
+                    input#updateUserEmail(type='text', placeholder='E-mail', field="email")
                     br
-                    input#updateUserFullname(type='text', placeholder='Nome completo')
-                    input#updateUserAge(type='text', placeholder='Idade')
+                    input#updateUserFullname(type='text', placeholder='Nome completo', field="fullname")
+                    input#updateUserAge(type='text', placeholder='Idade', field="age")
                     br
-                    input#updateUserLocation(type='text', placeholder='Localidade')
-                    input#updateUserGender(type='text', placeholder='Sexo')
+                    input#updateUserLocation(type='text', placeholder='Localidade', field="location")
+                    input#updateUserGender(type='text', placeholder='Sexo', field="gender")
                     br
-                    // /button#btnUpdateUser Editar usuário
+                    button#btnUpdateUser Editar usuário
                     button#btnCancelUpdateUser Cancelar
         // /UPDATE USER
 

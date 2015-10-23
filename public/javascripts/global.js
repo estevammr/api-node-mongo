@@ -26,7 +26,7 @@ function populateTable() {
       tableContent += '<tr>';
       tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Exibir detalhes">' + this.username + '</a></td>';
       tableContent += '<td>' + this.email + '</td>';
-      tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">Deletar</a><a href="#" class="linkupdateuser" rel="' + this._id + '"></a></td>';
+      tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">Deletar</a>/<a href="#" class="linkupdateuser" rel="' + this._id + '">Editar</a></td>';
       tableContent += '</tr>';
     });
 
@@ -134,11 +134,11 @@ function updateUser(event){
     var _id = $(this).parentsUntil('div').parent().attr('rel');
 
     //Criação da collection no Mongo para edição
-    var fieldsToBeUpdated = $('#updateUser input.updated');
+    var fieldsToBeUpdated = $('#updateUser .updated');
 
     var updatedFields = {};
     $(fieldsToBeUpdated).each(function(){
-      var key = $(this).attr('placeholder').replace(" "," ").toLowerCase();
+      var key = $(this).attr('field');
       var value = $(this).val();
       updatedFields[key]=value;
     });
@@ -150,10 +150,10 @@ function updateUser(event){
       data: updatedFields
     }).done(function( response ) {
 
-      if (response.msg === '') {
-        togglePanels();
-      } else {
+      if (response.msg['error']) {
         alert('Error: ' + response.msg);
+      } else {
+        togglePanels();
       }
       // Reload da tabela
       populateTable();

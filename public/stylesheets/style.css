@@ -65,3 +65,7 @@ fieldset {
 #updateUserPanel{
   display: none;
 }
+
+.teste {
+    background-color: red;
+}
