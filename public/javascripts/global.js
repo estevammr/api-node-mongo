@@ -9,7 +9,7 @@ $(document).ready(function() {
   $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
   $('#userList table tbody').on('click', 'td a.linkupdateuser', changeUserInfo);
   $('#btnCancelUpdateUser').on('click', togglePanels);
-  $('#updateUser input').on('change', function(){$(this).addClass('updated')});
+  $('#updateUser form div div input').on('change', function(){$(this).addClass('updated')});
   $('#btnUpdateUser').on('click', updateUser);
   populateTable();
 });
@@ -26,7 +26,8 @@ function populateTable() {
       tableContent += '<tr>';
       tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Exibir detalhes">' + this.username + '</a></td>';
       tableContent += '<td>' + this.email + '</td>';
-      tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">Deletar</a>/<a href="#" class="linkupdateuser" rel="' + this._id + '">Editar</a></td>';
+      tableContent += '<td><a href="#" class="linkdeleteuser btn-floating teal darken-3" rel="' + this._id + '"><i class="material-icons">delete</i></a></td>';
+      tableContent += '<td><a href="#" class="linkupdateuser btn-floating teal darken-3" rel="' + this._id + '"><i class="material-icons">mode_edit</i></a></td>';
       tableContent += '</tr>';
     });
 
@@ -63,12 +64,12 @@ function addUser(event) {
   if(errorCount === 0) {
 
     var newUser = {
-      'username': $('#addUser fieldset input#inputUserName').val(),
-      'email': $('#addUser fieldset input#inputUserEmail').val(),
-      'fullname': $('#addUser fieldset input#inputUserFullname').val(),
-      'age': $('#addUser fieldset input#inputUserAge').val(),
-      'location': $('#addUser fieldset input#inputUserLocation').val(),
-      'gender': $('#addUser fieldset input#inputUserGender').val()
+      'username': $('#addUser input#inputUserName').val(),
+      'email': $('#addUser input#inputUserEmail').val(),
+      'fullname': $('#addUser input#inputUserFullname').val(),
+      'age': $('#addUser input#inputUserAge').val(),
+      'location': $('#addUser input#inputUserLocation').val(),
+      'gender': $('#addUser input#inputUserGender').val()
     }
 
     // AJAX para realizar o POST
@@ -82,7 +83,7 @@ function addUser(event) {
       if (response.msg === '') {
 
         // Limpa os campos depois de add
-        $('#addUser fieldset input').val('');
+        $('#addUser input').val('');
 
         // Reload da tabela de usuários
         populateTable();
@@ -128,28 +129,30 @@ function updateUser(event){
 
   // Tela para confirmar a edição
   var confirmation = confirm('Deseja editar o usuário ?');
-
+  
   if (confirmation === true) {
 
-    var _id = $(this).parentsUntil('div').parent().attr('rel');
+    var _id = $('#updateUser').attr('rel');
 
     //Criação da collection no Mongo para edição
-    var fieldsToBeUpdated = $('#updateUser .updated');
-
+    var fieldsToBeUpdated = $('#updateUser form div div .updated');
+  
     var updatedFields = {};
+      
     $(fieldsToBeUpdated).each(function(){
       var key = $(this).attr('field');
       var value = $(this).val();
       updatedFields[key]=value;
+      
     });
-
+    console.log(_id);
     // AJAX PUT
     $.ajax({
       type: 'PUT',
       url: '/users/updateuser/' + _id,
       data: updatedFields
     }).done(function( response ) {
-
+      console.log(response);
       if (response.msg['error']) {
         alert('Error: ' + response.msg);
       } else {
@@ -158,6 +161,7 @@ function updateUser(event){
       // Reload da tabela
       populateTable();
     });
+    
   }
   else {
 

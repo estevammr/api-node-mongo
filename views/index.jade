@@ -1,71 +1,122 @@
 extends layout
 
 block content
-    h4= title
-   
-    // Wrapper
-    #wrapper
+    div(class="navbar-fixed teal darken-3")
+      nav
+        div(class="nav-wrapper teal darken-3")
+          a(href="#!" class="brand-logo")= title
+      
+    div(class='row')
+          div(class='col s12')
+            div(class='col s3')
+              div(class='row')
+                // USER INFO
+                #userInfo
+                    p(class='card-panel') 
+                        strong Nome Completo:
+                        |  <span id='userInfoName'></span>
+                        br
+                        strong Idade:
+                        |  <span id='userInfoAge'></span>
+                        br
+                        strong Localidade:
+                        |  <span id='userInfoLocation'></span>
+                        br
+                        strong Sexo:
+                        |  <span id='userInfoGender'></span>
+                // /USER INFO
+            div(class='col s5')
+              div(class='table-div')
+                
+                // USER LIST
+                #userList
+                  table(class='responsive-table')
+                    thead
+                      th(class='teal darken-3 white-text') Nome de usuário
+                      th(class='teal darken-3 white-text') E-mail
+                      th(class='teal darken-3 white-text') Deletar
+                      th(class='teal darken-3 white-text') Editar 
+                    tbody
+                // /USER LIST
+            div.col.s4
 
-        // USER INFO
-        #userInfo
-            h4 Detalhes
-            p 
-                strong Nome:
-                |  <span id='userInfoName'></span>
-                br
-                strong Idade:
-                |  <span id='userInfoAge'></span>
-                br
-                strong Sexo:
-                |  <span id='userInfoGender'></span>
-                br
-                strong Localidade:
-                |  <span id='userInfoLocation'></span>
-        // /USER INFO
-
-        // USER LIST
-        h4 Lista de usuários 
-        #userList
-            table
-                thead
-                    th Nome
-                    th E-mail
-                    th Deletar
-                tbody
-        // /USER LIST
-
-        // ADD USER
-        #addUserPanel
-            h4 Adicionar usuários
-            #addUser
-                fieldset
-                    input#inputUserName(type='text', placeholder='Nome de usuário')
-                    input#inputUserEmail(type='text', placeholder='E-mail')
-                    br
-                    input#inputUserFullname(type='text', placeholder='Nome completo')
-                    input#inputUserAge(type='text', placeholder='Idade')
-                    br
-                    input#inputUserLocation(type='text', placeholder='Localidade')
-                    input#inputUserGender(type='text', placeholder='Sexo')
-                    br
-                    button#btnAddUser Adicionar
-        // /ADD USER
-        // UPDATE USER
-        #updateUserPanel
-            h4 Editar usuários
-            #updateUser
-                fieldset
-                    input#updateUserName(type='text', placeholder='Nome de usuário', field="username")
-                    input#updateUserEmail(type='text', placeholder='E-mail', field="email")
-                    br
-                    input#updateUserFullname(type='text', placeholder='Nome completo', field="fullname")
-                    input#updateUserAge(type='text', placeholder='Idade', field="age")
-                    br
-                    input#updateUserLocation(type='text', placeholder='Localidade', field="location")
-                    input#updateUserGender(type='text', placeholder='Sexo', field="gender")
-                    br
-                    button#btnUpdateUser Editar usuário
-                    button#btnCancelUpdateUser Cancelar
-        // /UPDATE USER
-
-    // /WRAPPER
+                // ADD USER
+                #addUserPanel
+                    //h6 Adicionar usuários
+                    #addUser
+                        form(class='col s12')
+                          div(class='row')
+                            div(class="input-field col s6")
+                              input(id="inputUserName", type="text", class="validate")
+                              |<label for="inputUserName">Nome de Usuário</label>
+                            
+                            div(class="input-field col s6")  
+                              input(id="inputUserEmail", type="text", class="validate")
+                              |<label for="inputUserEmail">E-mail</label>
+                            br
+                           
+                            div(class="input-field col s6")  
+                              input(id="inputUserFullname", type="text", class="validate")
+                              |<label for="inputUserFullname">Nome Completo</label>
+                           
+                            div(class="input-field col s6")  
+                              input(id="inputUserAge", type="text", class="validate")
+                              |<label for="inputUserAge">Idade</label>
+                            br
+                            div(class="input-field col s6")  
+                              input(id="inputUserLocation", type="text", class="validate")
+                              |<label for="inputUserLocation">Localidade</label>
+                            div(class="input-field col s6")  
+                              input(id="inputUserGender", type="text", class="validate")
+                              |<label for="inputUserGender">Sexo</label>
+                           
+                            br
+                            div(class="input-field col s6") 
+                              button(id='btnAddUser',class='waves-effect waves-light btn teal darken-3') Adicionar
+                                |<i class="material-icons left white-text">send</i>
+                                
+                // /ADD USER
+                // UPDATE USER
+                #updateUserPanel
+                    #updateUser
+                        form(class='col s12')
+                          div(class='row')
+                            div(class="input-field col s6")
+                
+                              input(value= " ", id="updateUserName", type="text", class="validate", field="username")
+                              |<label class="active", for="updateUserName">Nome de Usuário</label>
+                            
+                            div(class="input-field col s6") 
+                              
+                              input(value= " ", id="updateUserEmail", type="text", class="validate", field="email")
+                              |<label class="active", for="updateUserEmail">E-mail</label>
+                            br
+                           
+                            div(class="input-field col s6") 
+                              
+                              input(value= " ", id="updateUserFullname", type="text", class="validate", field="fullname")
+                              |<label class="active", for="updateUserFullname active">Nome Completo</label>
+                           
+                            div(class="input-field col s6")  
+                             
+                              input(value= " ", id="updateUserAge", type="text", class="validate", field="age")
+                              |<label class="active", for="updateUserAge">Idade</label>
+                            br
+                            div(class="input-field col s6")  
+                              
+                              input(value= " ", id="updateUserLocation", type="text", class="validate", field="location")
+                              |<label class="active", for="updateUserLocation">Localidade</label>
+                            div(class="input-field col s6") 
+                             
+                              input(value= " ", id="updateUserGender", type="text", class="validate", field="gender")
+                              |<label class="active", for="updateUserGender">Sexo</label>
+                           
+                            br
+                            div(class="input-field col s6") 
+                              button(id='btnUpdateUser',class='waves-effect waves-light btn teal darken-3') Editar
+                                |<i class="material-icons left white-text">mode_edit</i>
+                            div(class="input-field col s6") 
+                              button(id='btnCancelUpdateUser',class='waves-effect waves-light btn teal darken-3') Cancelar
+                                 |<i class="material-icons left white-text">highlight_off</i>
+                           
+                // /UPDATE USER
